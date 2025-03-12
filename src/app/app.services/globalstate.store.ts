@@ -13,23 +13,7 @@ export class GlobalStateStore {
 
     constructor(router: Router) {
         router.events.subscribe((event) => {
-            if (event instanceof NavigationEnd && event.url === '/ui-test-page') {
-                this.testMode = true;
-                this.appMode = false;
-                this.showCpuUsage = false;
-            }
-
-            else if (event instanceof NavigationEnd && event.url === '/largenodesecretcpuusagerecord') {
-                this.testMode = false;
-                this.appMode = false;
-                this.showCpuUsage = true;
-            }
-
-            else if (event instanceof NavigationEnd && event.url !== '/largenodesecretcpuusagerecord' && event.url !== '/ui-test-page' ) {
-                this.appMode = true;
-                this.testMode = false;
-                this.showCpuUsage = false;
-            }
+            this.testMode = true
         });
     }
 }

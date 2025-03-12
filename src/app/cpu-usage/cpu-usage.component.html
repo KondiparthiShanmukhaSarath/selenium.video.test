@@ -1,0 +1,46 @@
+<ng-container *ngIf="{ usage: cpuusage$ | async }; let usage">
+    <ng-container *ngIf="parse(usage.usage || ''); let cpu">
+        <mat-card class="parent-mat-card">
+            <mat-card-header>
+                <mat-card-title class="white">
+                    NODE STATUS
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card
+                *ngFor="let cpuParam of cpu | keyvalue"
+                class="mat-inline-cards"
+            >
+                <mat-card-header>
+                    <mat-card-title>
+                        {{ cpuParam.key }}
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content
+                    *ngFor="let subParam of parse(stringify(cpuParam.value)) | keyvalue"
+                >
+                    {{ subParam.key }} : {{ subParam.value }}
+                </mat-card-content>
+            </mat-card>
+            <mat-card-actions>
+                <mat-slide-toggle
+                    color="warn"
+                    [(ngModel)]="pollingMode"
+                    (ngModelChange)="onSliderToggleHandler()"
+                    class="white"
+                >
+                    Continous Polling
+                </mat-slide-toggle>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Domains
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <app-domains-table></app-domains-table>
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+</ng-container>

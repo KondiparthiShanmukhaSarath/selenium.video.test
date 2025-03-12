@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { TestuipageComponent } from './testuipage/testuipage.component';
+import { GlobalStateStore } from './app.services/globalstate.store';
 
 @Component({
   selector: 'app-root',
-  imports: [TestuipageComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.less'
+  styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'selenium.video.test';
+  constructor(public readonly globalStateStore: GlobalStateStore) {}
 }

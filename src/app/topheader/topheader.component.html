@@ -1,0 +1,27 @@
+<mat-toolbar
+    class="topheader__toolbar"
+    color="primary"
+>
+    <button
+        mat-raised-button
+        (click)="openAboutUsModal()"
+        class="black-bg white"
+        matTooltip="Home"
+    >
+        <span>Se</span>
+        <mat-icon>
+            <span
+                class="material-icons-outlined orange"
+            >
+                play_circle_filled
+            </span>
+        </mat-icon>
+        <span
+            class="toolbar__spacer"
+        ></span>
+    </button>
+    <span class="app-header-spacer"></span>
+    <app-login-button
+        class="app-login-button"
+    ></app-login-button>
+</mat-toolbar>

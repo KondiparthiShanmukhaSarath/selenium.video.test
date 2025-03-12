@@ -1,9 +1,11 @@
-<mat-toolbar #toolbar class="ui-page-header purple white-bg">
+<mat-toolbar #toolbar
+    class="ui-page-header purple white-bg"
+>
     <span class="spacer"></span>
     <a routerLink="/ui-test-page" target="_blank">
         <h1>Testing Page</h1>
     </a>
-    <a routerLink="/" target="_blank">
+    <a routerLink="/ui-test-page" target="_blank">
         <mat-icon>
             <span class="material-symbols-outlined">open_in_new</span>
         </mat-icon>
@@ -21,18 +23,22 @@
                     <mat-card-content>
                         <ul>
                             <li><a href="https://facebook.com" target="_blank">This is a link to Facebook Site</a></li>
-                            <li><a href="https://google.com" target="_blank">This is a link to Google Search Engine</a>
-                            </li>
+                            <li><a href="https://google.com" target="_blank">This is a link to Google Search Engine</a></li>
                             <li><a href="https://bing.com" target="_blank">This is a link to Bing Search Engine</a></li>
                         </ul>
-                        <a href="https://twitter.com" target="_blank" class="selvideo-hyperlink"
-                            id="selvideo-hyperlink">
-                            <img src="https://www.shutterstock.com/image-photo/foods-high-selenium-brasil-nuts-600w-1112358764.jpg"
-                                alt="Selenium tutorial" style="width:100%;">
+                        <a href="https://twitter.com" target="_blank" class="selvideo-hyperlink" id="selvideo-hyperlink">
+                            <img
+                                src="https://www.shutterstock.com/image-photo/foods-high-selenium-brasil-nuts-600w-1112358764.jpg"
+                                alt="Selenium tutorial"
+                                style="width:100%;"
+                            >
                         </a>
                     </mat-card-content>
                     <mat-card-content class="selvideo-mat-card-info">
-                        <button mat-stroked-button class="selvideo-mat-card-info-button">
+                        <button
+                            mat-stroked-button
+                            class="selvideo-mat-card-info-button"
+                        >
                             These are links to sites. Use Selenium to click on Links and navigate to specific pages.
                         </button>
                     </mat-card-content>
@@ -44,11 +50,17 @@
                         Selenium - Calendar
                     </mat-card-title>
                     <mat-card-content>
-                        <mat-calendar [(selected)]="dateSelected"></mat-calendar>
+                        <mat-calendar
+                            [(selected)]="dateSelected"
+                        ></mat-calendar>
                     </mat-card-content>
                     <mat-card-content class="selvideo-mat-card-info">
-                        <button mat-raised-button color="primary" class="selvideo-mat-card-info-button"
-                            id="selvideo-date-button">
+                        <button
+                            mat-raised-button
+                            color="primary"
+                            class="selvideo-mat-card-info-button"
+                            id="selvideo-date-button"
+                        >
                             {{ dateSelected.toDateString() }}
                         </button>
                     </mat-card-content>
@@ -61,48 +73,71 @@
                     </mat-card-title>
                     <mat-card-content>
                         <form class="selvideo-form">
-                            <mat-form-field class="selvideo-input-full-width" appearance="fill">
+                            <mat-form-field
+                                class="selvideo-input-full-width"
+                                appearance="fill"
+                            >
                                 <mat-label>Company (disabled)</mat-label>
-                                <input matInput disabled value="Company X" class="selvideo-disabled-input"
-                                    id="selvideo-disabled-input">
+                                <input
+                                    matInput
+                                    disabled
+                                    value="Company X"
+                                    class="selvideo-disabled-input"
+                                    id="selvideo-disabled-input"
+                                >
                             </mat-form-field>
-                            <mat-form-field class="selvideo-input-full-width" appearance="fill">
+                            <mat-form-field
+                                class="selvideo-input-full-width"
+                                appearance="fill"
+                            >
                                 <mat-label>Address</mat-label>
-                                <textarea matInput value="Facebook Headquarters 1 Hacker Way Menlo Park, CA 94025"
-                                    class="selvideo-address" id="selvideo-address"></textarea>
+                                <textarea
+                                    matInput
+                                    value="Facebook Headquarters 1 Hacker Way Menlo Park, CA 94025"
+                                    class="selvideo-address"
+                                    id="selvideo-address"
+                                ></textarea>
                             </mat-form-field>
-                            <mat-form-field class="selvideo-chip-list" appearance="fill">
+                            <mat-form-field
+                                class="selvideo-chip-list"
+                                appearance="fill"
+                            >
                                 <mat-label>Skills</mat-label>
-                                <mat-chip-grid #chipList aria-label="Skill selection" class="selvideo-skills"
-                                    id="selvideo-skills" name="selvideo-skills">
-                                    <mat-chip-row *ngFor="let skill of skills; trackBy: trackByIndex"
-                                        (removed)="removeSkill(skill)" class="selvideo-skill">
+                                <mat-chip-list #chipList aria-label="Skill selection" class="selvideo-skills" id="selvideo-skills" name="selvideo-skills">
+                                    <mat-chip
+                                        *ngFor="let skill of skills; trackBy: trackByIndex"
+                                        (removed)="removeSkill(skill)"
+                                        class="selvideo-skill"
+                                    >
                                         {{ skill }}
                                         <button matChipRemove>
                                             <mat-icon>cancel</mat-icon>
                                         </button>
-                                    </mat-chip-row>
-                                </mat-chip-grid>
-                                <input #skillInput [formControl]="skillCtrl" [matAutocomplete]="auto"
-                                    [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                    (matChipInputTokenEnd)="addSkill($event)" class="selvideo-skill"
-                                    id="selvideo-skill">
+                                    </mat-chip>
+                                </mat-chip-list>
+                                <input
+                                    #skillInput
+                                    [formControl]="skillCtrl"
+                                    [matAutocomplete]="auto"
+                                    [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    (matChipInputTokenEnd)="addSkill($event)"
+                                    class="selvideo-skill"
+                                    id="selvideo-skill"
+                                >
                                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedSkill($event)">
-                                    <mat-option *ngFor="let skill of filteredSkills | async; trackBy: trackByIndex"
-                                        [value]="skill" class="selvideo-skill-option" id="selvideo-skill-option">
+                                    <mat-option *ngFor="let skill of filteredSkills | async; trackBy: trackByIndex" [value]="skill" class="selvideo-skill-option" id="selvideo-skill-option">
                                         {{ skill }}
                                     </mat-option>
                                 </mat-autocomplete>
                             </mat-form-field>
                             <mat-form-field class="selvideo-input-full-width" appearance="fill">
                                 <mat-label>Job Title</mat-label>
-                                <input matInput placeholder="SDE-II" value="Member of Technical Staff - 3"
-                                    class="selvideo-job-title" id="selvideo-job-title">
+                                <input matInput placeholder="SDE-II" value="Member of Technical Staff - 3" class="selvideo-job-title" id="selvideo-job-title">
                             </mat-form-field>
                             <mat-form-field class="selvideo-input-full-width" appearance="fill">
                                 <mat-label>Years of Experience</mat-label>
-                                <input matInput type="number" placeholder="YOE" [value]="0" class="selvideo-job-yoe"
-                                    id="selvideo-job-yoe">
+                                <input matInput type="number" placeholder="YOE" [value]="0" class="selvideo-job-yoe" id="selvideo-job-yoe">
                             </mat-form-field>
                         </form>
                     </mat-card-content>
@@ -130,16 +165,14 @@
                     <mat-card-content>
                         <mat-form-field class="selvideo-input-full-width" appearance="fill">
                             <mat-label>Date Picker</mat-label>
-                            <input matInput [matDatepicker]="dp3" disabled class="selvideo-datepicker"
-                                id="selvideo-datepicker">
+                            <input matInput [matDatepicker]="dp3" disabled class="selvideo-datepicker" id="selvideo-datepicker">
                             <mat-hint>MM/DD/YYYY</mat-hint>
                             <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
                             <mat-datepicker #dp3 disabled="false"></mat-datepicker>
                         </mat-form-field>
                     </mat-card-content>
                     <mat-card-content class="selvideo-mat-card-info">
-                        <button id="selvideo-open-dialog" class="selvideo-open-dialog" mat-raised-button color="warn"
-                            (click)="openDialog()">Open Dialog</button>
+                        <button id="selvideo-open-dialog" class="selvideo-open-dialog" mat-raised-button color="warn" (click)="openDialog()">Open Dialog</button>
                     </mat-card-content>
                 </mat-card>
             </mat-grid-tile>
@@ -152,14 +185,10 @@
                         <form [formGroup]="stateForm">
                             <mat-form-field class="selvideo-input-full-width" appearance="fill">
                                 <mat-label>States Group</mat-label>
-                                <input type="text" name="selvideo-states-list" matInput formControlName="stateGroup"
-                                    required [matAutocomplete]="autoGroup" class="selvideo-states-list"
-                                    id="selvideo-states-list">
+                                <input type="text" name="selvideo-states-list" matInput formControlName="stateGroup" required [matAutocomplete]="autoGroup" class="selvideo-states-list" id="selvideo-states-list">
                                 <mat-autocomplete #autoGroup="matAutocomplete">
-                                    <mat-optgroup *ngFor="let group of stateGroupOptions | async; trackBy: trackByIndex"
-                                        [label]="group.letter">
-                                        <mat-option *ngFor="let name of group.names; trackBy: trackByIndex"
-                                            [value]="name" class="selvideo-name-option">
+                                    <mat-optgroup *ngFor="let group of stateGroupOptions | async; trackBy: trackByIndex" [label]="group.letter">
+                                        <mat-option *ngFor="let name of group.names; trackBy: trackByIndex" [value]="name" class="selvideo-name-option">
                                             {{name}}
                                         </mat-option>
                                     </mat-optgroup>
@@ -170,32 +199,24 @@
                     <mat-card-content>
                         <mat-form-field class="selvideo-input-full-width" appearance="fill">
                             <mat-label>Toppings</mat-label>
-                            <mat-select [formControl]="toppings" multiple class="selvideo-toppings-list"
-                                id="selvideo-toppings-list">
+                            <mat-select [formControl]="toppings" multiple class="selvideo-toppings-list" id="selvideo-toppings-list">
                                 <mat-select-trigger>
                                     {{toppings.value?.[0] || ''}}
-                                    <span *ngIf="(toppings.value?.length || 0) > 1"
-                                        class="selvideo-additional-selection">
-                                        (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other'
-                                        : 'others'}})
+                                    <span *ngIf="(toppings.value?.length || 0) > 1" class="selvideo-additional-selection">
+                                        (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
                                     </span>
                                 </mat-select-trigger>
-                                <mat-option *ngFor="let topping of toppingList; trackBy: trackByIndex" [value]="topping"
-                                    class="selvideo-topping">{{topping}}</mat-option>
+                                <mat-option *ngFor="let topping of toppingList; trackBy: trackByIndex" [value]="topping" class="selvideo-topping">{{topping}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </mat-card-content>
                     <mat-card-content>
                         <mat-form-field class="selvideo-input-full-width" appearance="fill">
                             <mat-label>Pokemon</mat-label>
-                            <mat-select [formControl]="pokemonControl" id="selvideo-pokemons" class="selvideo-pokemons"
-                                name="selvideo-pokemons">
+                            <mat-select [formControl]="pokemonControl" id="selvideo-pokemons" class="selvideo-pokemons" name="selvideo-pokemons">
                                 <mat-option>-- None --</mat-option>
-                                <mat-optgroup *ngFor="let group of pokemonGroups; trackBy: trackByIndex"
-                                    [label]="group.name" [disabled]="group.disabled">
-                                    <mat-option *ngFor="let pokemon of group.pokemon; trackBy: trackByIndex"
-                                        [value]="pokemon.value" id="selvideo-pokemon-option"
-                                        class="selvideo-pokemon-option">
+                                <mat-optgroup *ngFor="let group of pokemonGroups; trackBy: trackByIndex" [label]="group.name" [disabled]="group.disabled">
+                                    <mat-option *ngFor="let pokemon of group.pokemon; trackBy: trackByIndex" [value]="pokemon.value" id="selvideo-pokemon-option" class="selvideo-pokemon-option">
                                         {{pokemon.viewValue}}
                                     </mat-option>
                                 </mat-optgroup>
@@ -218,15 +239,28 @@
                         </mat-form-field>
                     </mat-card-content>
                     <mat-card-content>
-                        <mat-slider id="selvideo-slider" class="selvideo-input-full-width selvideo-slider" thumbLabel
-                            [displayWith]="formatLabel" tickInterval="1000" step="1000" min="0" max="100000"
-                            aria-label="units" color="primary" [(ngModel)]="sliderValue"></mat-slider>
-                        <input matInput [(ngModel)]="sliderValue" class="selvideo-slider-value"
-                            id="selvideo-slider-value">
+                        <mat-slider
+                            id="selvideo-slider"
+                            class="selvideo-input-full-width selvideo-slider"
+                            thumbLabel
+                            [displayWith]="formatLabel"
+                            tickInterval="1000"
+                            step="1000"
+                            min="0"
+                            max="100000"
+                            aria-label="units"
+                            color="primary"
+                            [(ngModel)]="sliderValue"
+                        ></mat-slider>
+                        <input
+                            matInput
+                            [(ngModel)]="sliderValue"
+                            class="selvideo-slider-value"
+                            id="selvideo-slider-value"
+                        >
                     </mat-card-content>
                     <mat-card-content>
-                        <mat-slide-toggle class="selvideo-mat-card-info" color="warn" checked="true"
-                            id="selvideo-slide-toggle">
+                        <mat-slide-toggle class="selvideo-mat-card-info" color="warn" checked="true" id="selvideo-slide-toggle">
                             Accept Terms and Conditions
                         </mat-slide-toggle>
                     </mat-card-content>
@@ -238,13 +272,17 @@
                         Selenium - File Upload and Download with Progress Bar
                     </mat-card-title>
                     <mat-card-content>
-                        <mat-progress-bar class="selvideo-progress-bar" *ngIf="showFileProcessProgressBar"
-                            mode="indeterminate"></mat-progress-bar>
-                        <mat-progress-bar class="selvideo-progress-bar" *ngIf="showFileProcessedSuccessMessage"
-                            mode="determinate" value="100"></mat-progress-bar>
-                        <br />
-                        <button *ngIf="showFileProcessedSuccessMessage" mat-stroked-button color="accent"
-                            (click)="cleanFileCard()" class="selvideo-upload-status" id="selvideo-upload-status">
+                        <mat-progress-bar class="selvideo-progress-bar" *ngIf="showFileProcessProgressBar" mode="indeterminate"></mat-progress-bar>
+                        <mat-progress-bar class="selvideo-progress-bar" *ngIf="showFileProcessedSuccessMessage" mode="determinate" value="100"></mat-progress-bar>
+                        <br/>
+                        <button
+                            *ngIf="showFileProcessedSuccessMessage"
+                            mat-stroked-button
+                            color="accent"
+                            (click)="cleanFileCard()"
+                            class="selvideo-upload-status"
+                            id="selvideo-upload-status"
+                        >
                             {{ upload ? 'Upload Successful' : 'Download Started' }}
                             <mat-icon>
                                 <span class="material-symbols-outlined">
@@ -255,125 +293,123 @@
                     </mat-card-content>
                     <mat-card-content class="selvideo-mat-card-info">
                         <input type="file" #fileUploadInput (change)="onFileSelected()">
-                        <button mat-raised-button color="primary" (click)="onFileSelected()" class="selvideo-upload"
-                            id="selvideo-upload">
+                        <button mat-raised-button color="primary" (click)="onFileSelected()" class="selvideo-upload" id="selvideo-upload">
                             Upload File
                         </button>
-                        <a href="https://drive.google.com/u/5/uc?id=16cqj1XvpCPCUlB9xjzYp8tTGmug5t-7u&export=download"
-                            target="_blank" mat-raised-button color="warn" download="emptyfile.jpg"
-                            class="selvideo-download" id="selvideo-download" (click)="onFileSelected(false)">
+                        <a
+                            href="https://drive.google.com/u/5/uc?id=16cqj1XvpCPCUlB9xjzYp8tTGmug5t-7u&export=download"
+                            target="_blank"
+                            mat-raised-button
+                            color="warn"
+                            download="emptyfile.jpg"
+                            class="selvideo-download"
+                            id="selvideo-download"
+                            (click)="onFileSelected(false)"
+                        >
                             Download Sample File
                         </a>
                         <br /><br />
-                        <mat-hint>Your File Data stays in browser. This is just a simulation of file upload to server.
-                            No API calls
-                            are made</mat-hint>
+                        <mat-hint>Your File Data stays in browser. This is just a simulation of file upload to server. No API calls are made</mat-hint>
                     </mat-card-content>
                 </mat-card>
             </mat-grid-tile>
             <mat-grid-tile><mat-card>
-                    <mat-card-title>
-                        Selenium - Alerts, Prompts and Confirm
-                    </mat-card-title>
-                    <mat-card-content>
-                        <mat-button-toggle-group name="js-action" aria-label="Selenuium JS Interactions">
-                            <mat-button-toggle id="selvideo-alert" (click)="jsInteractions('alert')"
-                                value="Alerts">Alert</mat-button-toggle>
-                            <mat-button-toggle id="selvideo-prompt" (click)="jsInteractions('prompt')"
-                                value="Prompts">Prompt</mat-button-toggle>
-                            <mat-button-toggle id="selvideo-confirm" (click)="jsInteractions('confirm')"
-                                value="Confirm">Confirm</mat-button-toggle>
-                        </mat-button-toggle-group>
-                    </mat-card-content>
-                    <mat-card-content>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor]="animals">Animal index</button>
-                        <button mat-raised-button (click)="disableFor5Secs()" color="ascent" [disabled]="tempDisable"
-                            id="selvideo-button">
-                            {{ tempDisable ? 'Waiting...' : 'Disable for 5 Sec' }}
-                        </button>
-                        <mat-menu #animals="matMenu">
-                            <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
-                            <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
-                        </mat-menu>
-
-                        <mat-menu #vertebrates="matMenu">
-                            <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
-                            <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
-                            <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Birds</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Mammals</button>
-                        </mat-menu>
-
-                        <mat-menu #invertebrates="matMenu">
-                            <button mat-menu-item (click)="selectAnimal($event)">Insects</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Molluscs</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Crustaceans</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Corals</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Arachnids</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Velvet worms</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Horseshoe crabs</button>
-                        </mat-menu>
-
-                        <mat-menu #fish="matMenu">
-                            <button mat-menu-item (click)="selectAnimal($event)">Baikal oilfish</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Bala shark</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Ballan wrasse</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Bamboo shark</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Banded killifish</button>
-                        </mat-menu>
-
-                        <mat-menu #amphibians="matMenu">
-                            <button mat-menu-item (click)="selectAnimal($event)">Sonoran desert toad</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Western toad</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Arroyo toad</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Yosemite toad</button>
-                        </mat-menu>
-
-                        <mat-menu #reptiles="matMenu">
-                            <button mat-menu-item (click)="selectAnimal($event)">Banded Day Gecko</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Banded Gila Monster</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Black Tree Monitor</button>
-                            <button mat-menu-item (click)="selectAnimal($event)">Blue Spiny Lizard</button>
-                            <button mat-menu-item disabled (click)="selectAnimal($event)">Velociraptor</button>
-                        </mat-menu>
-                    </mat-card-content>
-                    <mat-card-content class="selvideo-mat-card-info">
-                        <button *ngIf="buttonText" class="selvideo-animal-selected" id="selvideo-animal-selected"
-                            mat-raised-button color="warn">{{ buttonText }} </button>
-                        <button *ngIf="jsOptionValue" class="selvideo-alert-value" id="selvideo-alert-value"
-                            mat-raised-button color="warn">{{ jsOptionValue }} </button>
-                    </mat-card-content>
-                </mat-card></mat-grid-tile>
+                <mat-card-title>
+                    Selenium - Alerts, Prompts and Confirm
+                </mat-card-title>
+                <mat-card-content>
+                    <mat-button-toggle-group name="js-action" aria-label="Selenuium JS Interactions">
+                        <mat-button-toggle id="selvideo-alert" (click)="jsInteractions('alert')" value="Alerts">Alert</mat-button-toggle>
+                        <mat-button-toggle id="selvideo-prompt" (click)="jsInteractions('prompt')" value="Prompts">Prompt</mat-button-toggle>
+                        <mat-button-toggle id="selvideo-confirm" (click)="jsInteractions('confirm')" value="Confirm">Confirm</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </mat-card-content>
+                <mat-card-content>
+                    <button mat-raised-button color="primary" [matMenuTriggerFor]="animals">Animal index</button>
+                    <button
+                        mat-raised-button
+                        (click)="disableFor5Secs()"
+                        color="ascent"
+                        [disabled]="tempDisable"
+                        id="selvideo-button"
+                    >
+                        {{ tempDisable ? 'Waiting...' : 'Disable for 5 Sec' }}
+                    </button>
+                    <mat-menu #animals="matMenu">
+                        <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+                        <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+                    </mat-menu>
+                    
+                    <mat-menu #vertebrates="matMenu">
+                        <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+                        <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+                        <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Birds</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Mammals</button>
+                    </mat-menu>
+                    
+                    <mat-menu #invertebrates="matMenu">
+                        <button mat-menu-item (click)="selectAnimal($event)">Insects</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Molluscs</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Crustaceans</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Corals</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Arachnids</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Velvet worms</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Horseshoe crabs</button>
+                    </mat-menu>
+                    
+                    <mat-menu #fish="matMenu">
+                        <button mat-menu-item (click)="selectAnimal($event)">Baikal oilfish</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Bala shark</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Ballan wrasse</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Bamboo shark</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Banded killifish</button>
+                    </mat-menu>
+                    
+                    <mat-menu #amphibians="matMenu">
+                        <button mat-menu-item (click)="selectAnimal($event)">Sonoran desert toad</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Western toad</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Arroyo toad</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Yosemite toad</button>
+                    </mat-menu>
+                    
+                    <mat-menu #reptiles="matMenu">
+                        <button mat-menu-item (click)="selectAnimal($event)">Banded Day Gecko</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Banded Gila Monster</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Black Tree Monitor</button>
+                        <button mat-menu-item (click)="selectAnimal($event)">Blue Spiny Lizard</button>
+                        <button mat-menu-item disabled (click)="selectAnimal($event)">Velociraptor</button>
+                    </mat-menu>
+                </mat-card-content>
+                <mat-card-content class="selvideo-mat-card-info">
+                    <button *ngIf="buttonText" class="selvideo-animal-selected" id="selvideo-animal-selected" mat-raised-button color="warn">{{ buttonText }} </button>
+                    <button *ngIf="jsOptionValue" class="selvideo-alert-value" id="selvideo-alert-value" mat-raised-button color="warn">{{ jsOptionValue }} </button>
+                </mat-card-content>
+            </mat-card></mat-grid-tile>
             <mat-grid-tile><mat-card>
-                    <mat-card-title>
-                        Selenium - Drag and Drop
-                    </mat-card-title>
-                    <mat-card-content>
-                        <div class="selvideo-container">
-                            <h2>To do</h2>
-
-                            <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
-                                [cdkDropListConnectedTo]="[doneList]" class="selvideo-list"
-                                (cdkDropListDropped)="drop($event)">
-                                <div class="selvideo-box" id="selvideo-option"
-                                    *ngFor="let item of todo; trackBy: trackByIndex" cdkDrag>
-                                    {{item}}</div>
-                            </div>
+                <mat-card-title>
+                    Selenium - Drag and Drop
+                </mat-card-title>
+                <mat-card-content>
+                    <div class="selvideo-container">
+                        <h2>To do</h2>
+                    
+                        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
+                            class="selvideo-list" (cdkDropListDropped)="drop($event)">
+                            <div class="selvideo-box" id="selvideo-option" *ngFor="let item of todo; trackBy: trackByIndex" cdkDrag>{{item}}</div>
                         </div>
-
-                        <div class="selvideo-container">
-                            <h2>Done</h2>
-
-                            <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
-                                [cdkDropListConnectedTo]="[todoList]" class="selvideo-list"
-                                (cdkDropListDropped)="drop($event)">
-                                <div class="selvideo-box" id="selvideo-option"
-                                    *ngFor="let item of done; trackBy: trackByIndex" cdkDrag>
-                                    {{item}}</div>
-                            </div>
+                    </div>
+                    
+                    <div class="selvideo-container">
+                        <h2>Done</h2>
+                    
+                        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
+                            class="selvideo-list" (cdkDropListDropped)="drop($event)">
+                            <div class="selvideo-box" id="selvideo-option" *ngFor="let item of done; trackBy: trackByIndex" cdkDrag>{{item}}</div>
                         </div>
-                    </mat-card-content>
-                </mat-card></mat-grid-tile>
+                    </div>
+                </mat-card-content>
+            </mat-card></mat-grid-tile>
             <mat-grid-tile>
                 <mat-card>
                     <mat-card-title>
@@ -383,41 +419,32 @@
                         <div class="selvideo-container">
                             <mat-form-field>
                                 <mat-label>Search...</mat-label>
-                                <input id="selvideo-async-search" matInput (keyup)="applyFilter($event)"
-                                    placeholder="Jason" #input>
+                                <input id="selvideo-async-search" matInput (keyup)="applyFilter($event)" placeholder="Jason" #input>
                             </mat-form-field>
                             <mat-card id="selvideo-search-card" class="selvideo-overflow">
-                                <table id="selvideo-search-table" *ngIf="!showspinner" mat-table
-                                    [dataSource]="dataSource" class="mat-elevation-z8 selvideo-table">
-
+                                <table id="selvideo-search-table" *ngIf="!showspinner" mat-table [dataSource]="dataSource" class="mat-elevation-z8 selvideo-table">
+                                    
                                     <!-- Word Column -->
                                     <ng-container matColumnDef="word">
                                         <th mat-header-cell *matHeaderCellDef> Filtered Words </th>
-                                        <td mat-cell id="selvideo-word" class="selvideo-word" *matCellDef="let element">
-                                            {{element.word}}
-                                        </td>
+                                        <td mat-cell id="selvideo-word" class="selvideo-word" *matCellDef="let element"> {{element.word}} </td>
                                     </ng-container>
-
+                                
                                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
+                                
                                     <!-- Row shown when there is no matching data. -->
                                     <tr class="mat-row" *matNoDataRow>
-                                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"
-                                        </td>
+                                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                                     </tr>
                                 </table>
                                 <mat-spinner *ngIf="showspinner"></mat-spinner>
                             </mat-card>
                         </div>
                         <mat-card-content class="selvideo-mat-card-info">
-                            <a href="https://www.verywellfamily.com/top-1000-baby-boy-names-2757618"
-                                target="_blank">Data Courtesy
-                                verywellfamily.com[Boy Names]</a>
-                            <br>
-                            <a href="https://www.verywellfamily.com/top-1000-baby-girl-names-2757832"
-                                target="_blank">Data Courtesy
-                                verywellfamily.com[Girl Names]</a>
+                            <a href="https://www.verywellfamily.com/top-1000-baby-boy-names-2757618" target="_blank">Data Courtesy verywellfamily.com[Boy Names]</a>
+                            <br >
+                            <a href="https://www.verywellfamily.com/top-1000-baby-girl-names-2757832" target="_blank">Data Courtesy verywellfamily.com[Girl Names]</a>
                         </mat-card-content>
                     </mat-card-content>
                 </mat-card>
@@ -429,16 +456,19 @@
                     </mat-card-title>
                     <mat-card-content>
                         <div class="selvideo-container">
-                            <iframe src="https://www.youtube.com/embed/a9__D53WsUs" class="selvideo-video"
-                                id="selvideo-video" title="What is AWS? | Amazon Web Services" frameborder="0"
+                            <iframe
+                                src="https://www.youtube.com/embed/a9__D53WsUs"
+                                class="selvideo-video"
+                                id="selvideo-video"
+                                title="What is AWS? | Amazon Web Services" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                                allowfullscreen
+                            ></iframe>
                         </div>
                     </mat-card-content>
                     <mat-card-content class="selvideo-mat-card-info">
-                        <p>Video Courtesy <a href="https://www.youtube.com/@amazonwebservices" target="_blank">AWS
-                                Youtube
-                                Channel</a></p>
+                        <p>Video Courtesy <a href="https://www.youtube.com/@amazonwebservices"
+                                target="_blank">AWS Youtube Channel</a></p>
                     </mat-card-content>
                 </mat-card>
             </mat-grid-tile>
@@ -447,7 +477,9 @@
     </mat-tab>
 </mat-tab-group>
 
-<div class="selvideo-empty"></div>
+<div
+    class="selvideo-empty"
+></div>
 
 <ng-template #spinner>
     <mat-spinner></mat-spinner>

@@ -1,37 +1,3 @@
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { TextFieldModule } from '@angular/cdk/text-field';
-import { MatCardModule } from '@angular/material/card';
-import { MatSelectModule } from '@angular/material/select';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ClipboardModule } from '@angular/cdk/clipboard';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatTableModule } from '@angular/material/table';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatMenuModule } from '@angular/material/menu';
-
 import {
   Component,
   ElementRef,
@@ -39,7 +5,7 @@ import {
 } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, startWith } from 'rxjs/operators';
@@ -50,44 +16,6 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { ELEMENT_DATA } from './testuipage-dictionary-words';
-
-import { TestuipageMiscComponent } from '../testuipage-misc/testuipage-misc.component';
-
-const materialModule = [
-  MatSidenavModule,
-  MatExpansionModule,
-  TextFieldModule,
-  MatFormFieldModule,
-  MatCardModule,
-  MatSelectModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatProgressBarModule,
-  MatButtonModule,
-  MatInputModule,
-  MatDividerModule,
-  MatTooltipModule,
-  MatSlideToggleModule,
-  ClipboardModule,
-  MatRadioModule,
-  MatTabsModule,
-  MatSnackBarModule,
-  MatGridListModule,
-  MatTableModule,
-  MatChipsModule,
-  MatDialogModule,
-  MatNativeDateModule,
-  MatDatepickerModule,
-  MatAutocompleteModule,
-  MatCheckboxModule,
-  MatSliderModule,
-  MatStepperModule,
-  MatProgressSpinnerModule,
-  MatPaginatorModule,
-  DragDropModule,
-  MatButtonToggleModule,
-  MatMenuModule,
-];
 
 export interface StateGroup {
   letter: string;
@@ -113,9 +41,8 @@ export const _filter = (opt: string[], value: string): string[] => {
 
 @Component({
   selector: 'app-testuipage',
-  imports: [...materialModule, TestuipageMiscComponent, FormsModule, ReactiveFormsModule],
   templateUrl: './testuipage.component.html',
-  styleUrl: './testuipage.component.less'
+  styleUrls: ['./testuipage.component.less']
 })
 export class TestuipageComponent {
   public loading: boolean = false;
@@ -136,10 +63,6 @@ export class TestuipageComponent {
   constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private http: HttpClient) {
     this.dateSelected = new Date();
 
-    this.stateForm = this._formBuilder.group({
-      stateGroup: '',
-    });
-
     this.filteredSkills = this.skillCtrl.valueChanges.pipe(
       startWith(null),
       map((skill: string | null) => (skill ? this._filter(skill) : this.allSkills.slice())),
@@ -155,7 +78,7 @@ export class TestuipageComponent {
   public get columns(): number {
     const width = this.toolbar?._elementRef.nativeElement.offsetWidth;
 
-    return width / 400;
+    return width/400;
   }
 
   public removeSkill(skill: string): void {
@@ -187,7 +110,9 @@ export class TestuipageComponent {
     this.dialog.open(TestuipageModal);
   }
 
-  public readonly stateForm: FormGroup;
+  stateForm = this._formBuilder.group({
+    stateGroup: '',
+  });
 
   stateGroups: StateGroup[] = [
     {
@@ -418,7 +343,7 @@ export class TestuipageComponent {
     }
   }
 
-  public displayedColumns: string[] = ['word'];
+  public displayedColumns: string[] = [ 'word' ];
   public dataSource = new MatTableDataSource(ELEMENT_DATA);
   public showspinner = false;
   public applyFilter(event: Event) {

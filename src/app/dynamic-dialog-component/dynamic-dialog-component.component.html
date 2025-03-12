@@ -1,0 +1,100 @@
+<h2 mat-dialog-title>Happy Learning...</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-tab-group
+        mat-align-tabs="start"
+        [(selectedIndex)]="activeTab"
+        (selectedIndexChange)="onTabSwitch()"
+    >
+        <mat-tab routerlink="/ads">
+            <ng-template mat-tab-label>
+                <mat-icon class="orange">ads_click</mat-icon>
+                Ads Support
+            </ng-template>
+            <script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5999986413831590"
+                crossorigin="anonymous"
+            ></script>
+            <ins
+                class="adsbygoogle"
+                style="display:block"
+                data-ad-format="autorelaxed"
+                data-ad-client="ca-pub-5999986413831590"
+                data-ad-slot="6671681215"
+            ></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </mat-tab>
+        <mat-tab [disabled]="actionsDisabled" routerlink="/home">
+            <ng-template mat-tab-label>
+                <mat-icon class="blue">info</mat-icon>
+                Home
+            </ng-template>
+            <app-about-us-component></app-about-us-component>
+        </mat-tab>
+        <mat-tab [disabled]="actionsDisabled" routerlink="/faqs">
+            <ng-template mat-tab-label>
+                <mat-icon class="red">quiz</mat-icon>
+                FAQ
+            </ng-template>
+            <app-faq-section></app-faq-section>
+        </mat-tab>
+        <mat-tab [disabled]="actionsDisabled" routerlink="/terms-and-conditions">
+            <ng-template mat-tab-label>
+                <mat-icon class="blue">format_list_bulleted</mat-icon>
+                Terms and Conditions
+            </ng-template>
+            <app-terms-and-conditions-component></app-terms-and-conditions-component>
+        </mat-tab>
+        <mat-tab [disabled]="actionsDisabled" routerlink="/privacy-policy">
+            <ng-template mat-tab-label>
+                <mat-icon class="blue">policy</mat-icon>
+                Privacy and Payments Policy
+            </ng-template>
+            <app-privacy-policy-component></app-privacy-policy-component>
+        </mat-tab>
+        <mat-tab [disabled]="actionsDisabled" routerlink="/pricing">
+            <ng-template mat-tab-label>
+                <mat-icon class="goldenrod">payments</mat-icon>
+                Pricing
+            </ng-template>
+            <app-pricing-component></app-pricing-component>
+        </mat-tab>
+        <mat-tab [disabled]="actionsDisabled" routerlink="/loginsuccess">
+            <ng-template mat-tab-label>
+                <mat-icon class="goldenrod">login</mat-icon>
+                Login Success
+            </ng-template>
+            <mat-card>
+                <mat-card-title>
+                    Login Successful <mat-icon class="goldenrod">verified</mat-icon>
+                </mat-card-title>
+                <mat-card-content>
+                    <ul>
+                        <li>Check this <a href="https://youtu.be/S3IJRwH4Ppc" target="_blank">Video Tutorial</a> on How to Use?</li>
+                        <li>Check this <a href="https://youtu.be/KNCp4MB58Eo" target="_blank">Video Tutorial</a> on How to Schedule Interview?</li>
+                        <li>Or Visit <a href="https://selenium.video/home" target="_blank">https://selenium.video/home</a></li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-content>
+                    If you see login is not successfull, Please reload the page., and retry Login.
+                </mat-card-content>
+                <mat-card-actions align="start">
+                    <a mat-raised-button href="https://selenium.video">Reload Application</a>
+                </mat-card-actions>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button
+        mat-raised-button
+        color="warn"
+        [mat-dialog-close]="true"
+        cdkFocusInitial
+        [disabled]="actionsDisabled"
+    >
+        {{ actionsDisabled ? 'Closing [in 5 seconds...]' : 'Close' }}
+    </button>
+</mat-dialog-actions>

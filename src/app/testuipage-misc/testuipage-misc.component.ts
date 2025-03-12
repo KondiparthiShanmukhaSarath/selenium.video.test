@@ -4,8 +4,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -28,14 +26,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 const EMPTY_ELEMENT_DATA: PeriodicElement = { position: 0, name: '', weight: 0, symbol: '' };
 
-const materialModules = [
-  MatProgressBarModule,
-];
-
 
 @Component({
   selector: 'app-testuipage-misc',
-  imports: [...materialModules],
   templateUrl: './testuipage-misc.component.html',
   styleUrls: ['./testuipage-misc.component.less']
 })
@@ -52,9 +45,13 @@ export class TestuipageMiscComponent implements OnInit {
   public showLoginSpinner = false;
   public isLoginSuccessfull = false;
 
-  public readonly firstFormGroup: unknown;
+  public firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
 
-  public readonly secondFormGroup: unknown;
+  public secondFormGroup = this._formBuilder.group({
+    secondCtrl: [''],
+  });
 
   public authenticateCreds(): void {
     this.showLoginSpinner = true;
@@ -68,15 +65,7 @@ export class TestuipageMiscComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder
-  ) {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: [''],
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
   }
@@ -116,7 +105,7 @@ export class TestuipageMiscComponent implements OnInit {
   public deleteSelected(): void {
     this.selection.selected.forEach(row => {
       const position = ELEMENT_DATA.indexOf(row);
-
+      
       position !== -1 && ELEMENT_DATA.splice(position, 1);
       this.dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
       this.selection = new SelectionModel<PeriodicElement>(true, []);

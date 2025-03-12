@@ -1,0 +1,1164 @@
+---
+
+- testcase_title: How to run selenium online?
+  testcase_description: |
+    Basic Navigation.
+    This site provides the ability to run your selenium scripts online.
+    Test your selenium scripts within your browser, without any setup overhead.
+    This is a sample Selenium Code that deals with navigation to a test-ui page.
+  testcase_source: selenium.video
+  techstacks:
+    - python_selenium:
+        code: |
+          # Necessary Imports
+
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          wb_options = Options()
+
+          # Required for containerized Apps
+
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+
+          # Setting up ChromeDriver for Google Chrome
+
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+
+          # A simple navigation action
+
+          driver.get('http://localhost/ui-test-page')
+
+          # Quitting the browser instance
+
+          driver.quit()
+
+    - java_selenium: ""
+
+- testcase_title: How to Navigate in Chrome using Python Selenium?
+  testcase_description: |
+    Basic Navigation.
+    This is a sample Selenium Code that deals with navigation to ui pages,
+    using Google Chrome Web Browser.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # Necessary Imports
+
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          wb_options = Options()
+
+          # Required for ChromeDriver in containerized Apps.
+
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+
+          # Setting up ChromeDriver for Google Chrome
+
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+
+          # Navigation to ui pages using Google Chrome Web Browser
+
+          driver.get('http://localhost/ui-test-page')
+          driver.get('https://google.com/')
+          driver.get('https://facebook.com/')
+          driver.get('https://youtube.com/')
+
+          # Navigating back and forth.
+
+          driver.forward()
+          driver.back()
+
+          # Quit the browser instance
+
+          driver.quit()
+
+    - java_selenium: ""
+
+- testcase_title: How to refresh a page using python selenium?
+  testcase_description: |
+    Use driver.refresh() to refresh browser's active tab.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # Necessary Imports
+
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          wb_options = Options()
+
+          # Web-driver options required for ChromeDriver in containerized Apps
+
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+
+          # Set up driver instance for Google Chrome Web Browser
+
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+
+          # Navigate to test-ui page using Google Chrome Web Browser
+
+          driver.get('http://localhost/ui-test-page')
+
+          # Refresh Browser
+
+          driver.refresh()
+
+          # Quit driver
+
+          driver.quit()
+
+    - java_selenium: ""
+
+- testcase_title: How to click on link using python selenium?
+  testcase_description: |
+    Use driver.find_element(By.LINK_TEXT, 'hyperlink_text') to find the hyperlink,
+    and click on it. The difference between By.LINK_TEXT and By.PARTIAL_LINK_TEXT is that
+    you can provide partial hyper link text to By.PARTIAL_LINK_TEXT.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          # Find and click using complete hyperlink text
+          driver.get('http://localhost/ui-test-page')
+          hyperlink = driver.find_element(By.LINK_TEXT, 'This is a link to Google Search Engine')
+          hyperlink.click()
+
+          original_window = driver.current_window_handle
+
+          for window_handle in driver.window_handles:
+              if window_handle != original_window:
+                  driver.switch_to.window(window_handle)
+                  break
+
+          assert driver.current_url == 'https://www.google.com/',\
+              'driver.current_url should be `https://www.google.com/`'
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: What are some commonly used webdriver properties and functionalities?
+  testcase_description: |
+    driver.current_url for current URL in active tab, driver.title for title,
+    driver.maximize_window(), driver.minimize_window() for maximizing and minimizing browser window,
+    driver.implicitly_wait(T) for waiting for any element up until T seconds before raising exception.
+    References:
+      https://www.selenium.dev/documentation/webdriver/waits/#implicit-wait
+      https://www.selenium.dev/documentation/webdriver/interactions/windows/#window-management
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          # ----------Initial Setup---------- #
+
+          driver.get('https://facebook.com/')
+
+          # get current URL
+          print(driver.current_url)
+
+          # get active tab title
+          print(driver.title)
+
+          # maximize window
+          driver.maximize_window()
+
+          # minimize window
+          driver.minimize_window()
+
+          # following implicitly_wait wait for 5 seconds,
+          # Check this link -> https://stackoverflow.com/a/70782790/8367446
+          driver.implicitly_wait(5)
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to locate elements in browser by id in python selenium?
+  testcase_description: |
+    Use driver.find_element(By.ID, 'id-of-element').
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          job_input = driver.find_element(By.ID, 'selvideo-job-title')
+          job_title_before = job_input.get_attribute('value')
+          job_input.clear()
+          job_input.send_keys('Staff Engineer - 1')
+          job_title_after = job_input.get_attribute('value')
+
+          assert job_title_before != job_title_after,\
+              'job_title_before should not be job_title_after'
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+
+        static_video: https://www.youtube.com/watch?v=314gRCdFkmg
+    - java_selenium: ""
+
+- testcase_title: How to locate elements in browser by name in python selenium?
+  testcase_description: |
+    Use driver.find_element(By.NAME, 'name-of-element').
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          state_input = driver.find_element(By.NAME, 'selvideo-states-list')
+          state_selected_before = state_input.get_attribute('value')
+
+          if state_selected_before == 'New Mexico':
+              exit()
+
+          state_input.clear()
+          state_input.send_keys('New')
+
+          autocomplete_options = driver.find_elements(By.CLASS_NAME, 'selvideo-name-option')
+
+          for option in autocomplete_options:
+              if option.text == 'New Mexico':
+                  option.click()
+                  break
+
+          state_selected_after = state_input.get_attribute('value')
+
+          assert state_selected_after == 'New Mexico', \
+              'state_selected_after should be New Mexico'
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=314gRCdFkmg
+    - java_selenium: ""
+
+- testcase_title: How to locate elements in browser by xpath in python selenium?
+  testcase_description: |
+    Use driver.find_element(By.XPATH, 'xpath-of-element').
+    Please use ''' or ' for creating strings.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          disabled_input = driver.find_element(By.XPATH, '''//input[@id='selvideo-disabled-input']''')
+
+          assert not disabled_input.is_enabled(), \
+              'input should not be enabled'
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+
+        static_video: https://www.youtube.com/watch?v=oV74Najm6Nc
+    - java_selenium: ""
+
+- testcase_title: How to locate elements in browser by tag name in python selenium?
+  testcase_description: |
+    Use driver.find_element(By.TAG_NAME, 'tagname-of-element').
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          checkboxes = driver.find_elements(By.TAG_NAME, 'mat-checkbox')
+
+          for checkbox in checkboxes:
+              if not checkbox.is_selected():
+                  checkbox.click()
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=oV74Najm6Nc
+    - java_selenium: ""
+
+- testcase_title: How to locate elements in browser by class name in python selenium?
+  testcase_description: |
+    Use driver.find_element(By.CLASS_NAME, 'classname-of-element').
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          year_button = driver.find_element(By.CLASS_NAME, 'mat-calendar-period-button')
+          year_button.click()
+
+          def click_by_text(class_name, text):
+              calendar_cells = driver.find_elements(By.CLASS_NAME, class_name)
+              for calendar_cell in calendar_cells:
+                  if calendar_cell.text == text:
+                      calendar_cell.click()
+                      return
+
+          click_by_text('mat-calendar-body-cell', '2030')
+          click_by_text('mat-calendar-body-cell', 'MAY')
+          click_by_text('mat-calendar-body-cell', '15')
+
+          calendar_button = driver.find_element(By.ID, 'selvideo-date-button')
+          selected_date = calendar_button.text
+
+          assert '2030' in selected_date and 'May' in selected_date and '15' in selected_date,\
+              'Date Selected should be 15 May 2030'
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to locate elements in browser by css selector in python selenium?
+  testcase_description: |
+    Use driver.find_element(By.CSS_SELECTOR, 'css-selector-of-element').
+    Check https://www.w3schools.com/cssref/css_selectors.php before proceeding with css selectors.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          skill_input = driver.find_element(By.CSS_SELECTOR, '#selvideo-skill')
+          skill_input.click()
+
+          suggested_skills = driver.find_elements(By.CSS_SELECTOR, '.selvideo-skill-option')
+          for skill in suggested_skills:
+              skill_input.click()
+              skill.click()
+
+          all_selected_skills = driver.find_elements(By.CSS_SELECTOR, 'mat-chip-list mat-chip.selvideo-skill button')
+
+          for selected_skill in reversed(all_selected_skills):
+              selected_skill.click()
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=314gRCdFkmg
+    - java_selenium: ""
+
+- testcase_title: How to set text in textarea or in inputs using python selenium?
+  testcase_description: |
+    Use send_keys('Text to be set') on html element.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          company_address = driver.find_element(By.ID, 'selvideo-address')
+          company_address.clear()
+          company_address.send_keys('1600 Amphitheatre Parkway Mountain View, CA 94043')
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+
+        static_video: https://www.youtube.com/watch?v=oV74Najm6Nc
+    - java_selenium: ""
+
+- testcase_title: How to upload a file using python selenium?
+  testcase_description: |
+    Use send_keys('/Path/of/the/file/to/be/uploaded') on html element.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support import expected_conditions
+          from selenium.webdriver.support.wait import WebDriverWait
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          file_path_input = driver.find_element(By.XPATH, '''//input[@type='file']''')
+          file_path_input.send_keys('/tmp/selenium.video.png.image')
+
+          upload_button = driver.find_element(By.ID, 'selvideo-upload')
+          upload_button.click()
+
+          progressbar = driver.find_element(By.CLASS_NAME, 'selvideo-progress-bar')
+
+          upload_success_button = WebDriverWait(driver, 10).until(
+              expected_conditions.presence_of_element_located((By.ID, 'selvideo-upload-status')))
+
+          upload_success_button.click()
+
+          # driver.quit() closes browser, ending session, popups and all tabs.
+          driver.quit()
+
+        static_video: https://www.youtube.com/watch?v=314gRCdFkmg
+    - java_selenium: ""
+
+- testcase_title: How to download a file using python selenium?
+  testcase_description: |
+    After initiating download by a button click verify its presence in file system, at downloads directory.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support import expected_conditions
+          from selenium.webdriver.support.wait import WebDriverWait
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+          download_button = driver.find_element(By.ID, 'selvideo-download')
+          download_button.click()
+
+          status_button = WebDriverWait(driver, 10).until(
+              expected_conditions.presence_of_element_located((By.ID, 'selvideo-upload-status')))
+          status_button.click()
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=oV74Najm6Nc
+    - java_selenium: ""
+
+- testcase_title: How to take a screenshot using python selenium?
+  testcase_description: |
+    driver.save_screenshot('/tmp/screenshot.png') while on the page.
+    Trigger this function on exception raised, in real world.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+          driver.save_screenshot('/tmp/screenshot.png')
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to Handle Alerts in browser using python selenium?
+  testcase_description: |
+    Use Alert(driver).send_keys('Text') to interact with Alert.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.alert import Alert
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          prompt_button = driver.find_element(By.ID, 'selvideo-prompt')
+          prompt_button.location_once_scrolled_into_view
+          prompt_button.click()
+
+          try:
+              alert = WebDriverWait(driver, 3).until(expected_conditions.alert_is_present())
+              alert.send_keys('Ezekiel')
+              alert.accept()
+          except:
+              raise Exception('Alert Not Present')
+
+          driver.quit()
+
+        static_video: https://www.youtube.com/watch?v=314gRCdFkmg
+    - java_selenium: ""
+
+- testcase_title: How to switch tabs of browser using python selenium?
+  testcase_description: |
+    Use driver.switch_to.window(required_window_handle) to switch context to that tab.
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          testing_page = driver.find_element(By.LINK_TEXT, 'Testing Page')
+          testing_page.click()
+
+          original_window = driver.current_window_handle
+
+          for window_handle in driver.window_handles:
+              if window_handle != original_window:
+                  driver.switch_to.window(window_handle)
+                  break
+
+          # UI Interaction, scrolling into view.
+          names_search = driver.find_element(By.ID, 'selvideo-async-search')
+          names_search.location_once_scrolled_into_view
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=314gRCdFkmg
+    - java_selenium: ""
+
+- testcase_title: How to switch frames in a webpage using python selenium?
+  testcase_description: |
+    Select button by ID, and use click(), function
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+          from selenium.webdriver import Keys
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          # Play video embedded with iframe.
+          iframe = driver.find_element(By.ID, 'selvideo-video')
+          iframe.location_once_scrolled_into_view
+          iframe.click()
+
+          # Switch to iframe to interact with video controls
+          driver.switch_to.frame(iframe)
+
+          # Source button
+          source_btn = WebDriverWait(driver, 10).until(
+              expected_conditions.presence_of_element_located((By.CLASS_NAME, 'ytp-youtube-button')))
+          source_btn.click()
+
+          # Switch window handle to the youtube page
+          original_window = driver.current_window_handle
+          for window_handle in driver.window_handles:
+              if window_handle != original_window:
+                  driver.switch_to.window(window_handle)
+                  break
+
+          # Wait for spinner to be disappeared
+          WebDriverWait(driver, 10).until(
+              expected_conditions.invisibility_of_element((By.CSS_SELECTOR, '.ytp-spinner')))
+
+          # Close the tab
+          driver.close()
+
+          # Switch back to original window handle, ie. selenium.video
+          driver.switch_to.window(original_window)
+
+          # Switch to iframe
+          WebDriverWait(driver, 10).until(
+              expected_conditions.frame_to_be_available_and_switch_to_it((By.ID, 'selvideo-video')))
+
+          # Make the video full screen and escape
+          full_screen_btn = WebDriverWait(driver, 10).until(
+              expected_conditions.presence_of_element_located((By.CLASS_NAME, 'ytp-fullscreen-button')))
+          full_screen_btn.click()
+          webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+
+          # Quit driver
+          driver.quit()
+
+        static_video: https://www.youtube.com/watch?v=oV74Najm6Nc
+    - java_selenium: ""
+
+- testcase_title: How to explicitly wait using python selenium?
+  testcase_description: |
+    Select button by ID, and use click(), function
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          name_text = 'Jason'
+          search_field = driver.find_element(By.ID, 'selvideo-async-search')
+          search_field.click()
+          search_field.clear()
+          search_field.send_keys(name_text)
+
+          WebDriverWait(driver, 10).until(
+              expected_conditions.presence_of_element_located((By.CLASS_NAME, 'selvideo-word')))
+
+          name_list = driver.find_elements(By.CLASS_NAME, 'selvideo-word')
+          for name in name_list:
+              name.location_once_scrolled_into_view
+              if name.text == name_text:
+                  break
+          else:
+              assert False, 'job_title_before should not be job_title_after'
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=oV74Najm6Nc
+    - java_selenium: ""
+
+- testcase_title: How to wait until title is present using python selenium?
+  testcase_description: |
+    Use driver.back()
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          driver.get('https://google.com/')
+          WebDriverWait(driver, 10).until(expected_conditions.title_is('Google'))
+
+          driver.get('https://bing.com/')
+          WebDriverWait(driver, 10).until(expected_conditions.title_is('Bing'))
+
+          driver.get('https://facebook.com/')
+          WebDriverWait(driver, 10).until(expected_conditions.title_contains('Facebook'))
+
+          driver.get('https://youtube.com/')
+          WebDriverWait(driver, 10).until(expected_conditions.title_is('YouTube'))
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to wait until presence of element is located using python selenium?
+  testcase_description: |
+    Create a webdriver instance for chrome, and You can access driver.get(required_url)
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          reload_btn = driver.find_element(By.ID, 'selvideo-db-reload')
+          reload_btn.location_once_scrolled_into_view
+
+          reload_btn.click()
+
+          WebDriverWait(driver, 10).until(
+              expected_conditions.presence_of_element_located((By.ID, 'selvideo-username')))
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=314gRCdFkmg
+    - java_selenium: ""
+
+- testcase_title: How to wait until visibility of element is located using python selenium?
+  testcase_description: |
+    Select button by ID, and use click(), function
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          reload_btn = driver.find_element(By.ID, 'selvideo-db-reload')
+          reload_btn.location_once_scrolled_into_view
+
+          reload_btn.click()
+
+          WebDriverWait(driver, 10).until(
+              expected_conditions.visibility_of_all_elements_located((By.ID, 'selvideo-login')))
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=oV74Najm6Nc
+    - java_selenium: ""
+
+- testcase_title: How to wait until invisibility of element is located using python selenium?
+  testcase_description: |
+    Use driver.back()
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          reload_btn = driver.find_element(By.ID, 'selvideo-db-reload')
+          reload_btn.location_once_scrolled_into_view
+
+          reload_btn.click()
+
+          WebDriverWait(driver, 10).until(
+              expected_conditions.invisibility_of_element_located((By.TAG_NAME, 'mat-spinner')))
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to wait until text to be present in element using python selenium?
+  testcase_description: |
+    Use driver.back()
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          button = driver.find_element(By.ID, 'selvideo-button')
+          button.location_once_scrolled_into_view
+          button.click()
+
+          WebDriverWait(driver, 10).until(
+              expected_conditions.text_to_be_present_in_element(
+                  (By.ID, 'selvideo-button'), 'Disable for 5 Sec'))
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to scroll to an element using python selenium?
+  testcase_description: |
+    Use driver.back()
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost/ui-test-page')
+
+          button = driver.find_element(By.ID, 'selvideo-db-reload')
+          button.location_once_scrolled_into_view
+          button.click()
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to verify for a text to be present anywhere in the web page using python selenium?
+  testcase_description: |
+    Use driver.back()
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from webdriver_manager.chrome import ChromeDriverManager
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost:59311/ui-test-page')
+
+          assert 'Go home' in driver.page_source, 'Go home, not in current page'
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to hover over an element in python selenium?
+  testcase_description: |
+    Use driver.back()
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          # ----------Initial Setup---------- #
+          from selenium import webdriver
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.support import expected_conditions
+          from webdriver_manager.chrome import ChromeDriverManager
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.action_chains import ActionChains
+
+          wb_options = Options()
+          wb_options.add_argument('--no-sandbox')
+          wb_options.add_argument('--disable-dev-shm-usage')
+          wb_service = Service(ChromeDriverManager().install())
+          driver = webdriver.Chrome(service=wb_service, options=wb_options)
+          driver.maximize_window()
+          # ----------Initial Setup---------- #
+
+          driver.get('http://localhost:59311/ui-test-page')
+
+          xpath = lambda btn_text: '''//*[contains(text(), '%s')]''' % btn_text
+
+          animal_button_xpath = xpath('Animal')
+          vertebrates_button_xpath = xpath('Vertebrates')
+          amphibians_button_xpath = xpath('Amphibians')
+          western_toad_button_xpath = xpath('Western toad')
+
+          animal_button = driver.find_element(By.XPATH, animal_button_xpath)
+          animal_button.location_once_scrolled_into_view
+          animal_button.click()
+
+          vertebrates_button_list = WebDriverWait(driver, 10).until(
+              expected_conditions.visibility_of_all_elements_located((By.XPATH, vertebrates_button_xpath)))
+          hover_on_vertebrates = ActionChains(driver).move_to_element(vertebrates_button_list[0])
+          hover_on_vertebrates.perform()
+
+          amphibians_button_list = WebDriverWait(driver, 10).until(
+              expected_conditions.visibility_of_all_elements_located((By.XPATH, amphibians_button_xpath)))
+          hover_on_amphibians = ActionChains(driver).move_to_element(amphibians_button_list[0])
+          hover_on_amphibians.perform()
+
+          western_toad_button_list = WebDriverWait(driver, 10).until(
+              expected_conditions.visibility_of_all_elements_located((By.XPATH, western_toad_button_xpath)))
+          hover_on_western_toad = ActionChains(driver).move_to_element(western_toad_button_list[0])
+          hover_on_western_toad.perform()
+
+          driver.quit()
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+- testcase_title: How to drag and drop ui elements using python selenium?
+  testcase_description: |
+    Use driver.back()
+  testcase_source: NA
+  techstacks:
+    - python_selenium:
+        code: |
+          
+        static_video: https://www.youtube.com/watch?v=ZMEHyrfoa7w
+    - java_selenium: ""
+
+...

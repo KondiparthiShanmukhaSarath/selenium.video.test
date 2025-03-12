@@ -1,0 +1,80 @@
+<mat-grid-list cols="3">
+    <mat-grid-tile [style.background]="'white'">
+        <mat-grid-tile-header>
+            <button mat-raised-button>
+                Free Version
+                <mat-icon class="black">
+                    <span class="material-symbols-sharp">
+                        ads_click
+                    </span>
+                </mat-icon>
+            </button>
+        </mat-grid-tile-header>
+        <div class="black">
+            <p class="red">Lower session expiry time [10 to 20 Mins]</p>
+            <p class="red">You might need to create sessions often</p>
+            <p>Free of Cost</p>
+            <p>Supported by Ads</p>
+            <p>Code Execution from UI</p>
+            <p>Response in form of Video</p>
+            <p>Access to various Real World examples</p>
+        </div>
+        <mat-grid-tile-footer>
+            <button mat-raised-button>
+                Free
+            </button>
+        </mat-grid-tile-footer>
+    </mat-grid-tile>
+    <mat-grid-tile [style.background]="'grey'">
+        <mat-grid-tile-header>
+            <button mat-raised-button>
+                PRO
+                <mat-icon class="black">
+                    <span class="material-symbols-outlined">
+                        verified
+                    </span>
+                </mat-icon>
+            </button>
+        </mat-grid-tile-header>
+        <div class="white">
+            <p>Medium to Higher session expiry time <mat-icon class="gold"><span class="material-symbols-outlined">verified</span></mat-icon></p>
+            <ul class="gold">
+                <li><p>[{{ isIst ? planPrice.hour.INR/100 : planPrice.hour.USD/100 }} {{ isIst ? 'INR' : 'USD' }} per Hour]</p></li>
+                <li><p>[{{ isIst ? planPrice.day.INR/100 : planPrice.day.USD/100 }} {{ isIst ? 'INR' : 'USD' }} for 23 Hours]</p></li>
+            </ul>
+            <p>Code Execution from UI <mat-icon class="gold"><span class="material-symbols-outlined">verified</span></mat-icon></p>
+            <p>Response in form of Video <mat-icon class="gold"><span class="material-symbols-outlined">verified</span></mat-icon></p>
+            <p>Access to various Real World examples <mat-icon class="gold"><span class="material-symbols-outlined">verified</span></mat-icon></p>
+        </div>
+        <mat-grid-tile-footer>
+            <button mat-raised-button>
+                Starting From {{ isIst ? planPrice.hour.INR/100 : planPrice.hour.USD/100 }} {{ isIst ? 'INR' : 'USD' }}
+            </button>
+        </mat-grid-tile-footer>
+    </mat-grid-tile>
+    <mat-grid-tile [style.background]="'black'">
+        <mat-grid-tile-header>
+            <button mat-raised-button class="goldenrod-bg white">
+                Interview [For Companies]
+                <mat-icon class="white">
+                    <span class="material-symbols-sharp">
+                        work_history
+                    </span>
+                </mat-icon>
+            </button>
+        </mat-grid-tile-header>
+        <div class="white">
+            <p>Good for Interview</p>
+            <p>Plan an Interview upto 30 Hours prior</p>
+            <p>Interview Mode Supported</p>
+            <p>Code Execution from UI</p>
+            <p>Response in form of Video</p>
+        </div>
+        <mat-grid-tile-footer>
+            <button mat-raised-button class="goldenrod-bg white">
+                Starting From {{ isIst ? planPrice.interview.INR/100 : planPrice.interview.USD/100 }} {{ isIst ? 'INR' : 'USD' }}
+            </button>
+        </mat-grid-tile-footer>
+    </mat-grid-tile>
+</mat-grid-list>
+

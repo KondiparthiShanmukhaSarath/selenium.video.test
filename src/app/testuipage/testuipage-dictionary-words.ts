@@ -1,5 +1,5 @@
 export interface IDictionaryWord {
-    word: string;
+  word: string;
 }
 
 const names = [
@@ -2003,6 +2003,6 @@ const names = [
     "Sandra",
     "Soleil",
     "Annabella",
-].sort().map(name => ({ word: name }));
+].sort().map(name => ({word: name}));
 
 export const ELEMENT_DATA: IDictionaryWord[] = names;

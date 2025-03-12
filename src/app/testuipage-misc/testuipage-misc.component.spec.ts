@@ -8,10 +8,12 @@ describe('TestuipageMiscComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestuipageMiscComponent]
+      declarations: [ TestuipageMiscComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(TestuipageMiscComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -6,30 +6,32 @@
                 <mat-card-subtitle>Credentials: username/password</mat-card-subtitle>
                 <mat-form-field appearance="fill">
                     <mat-label>Username</mat-label>
-                    <input class="selvideo-username" id="selvideo-username" matInput placeholder="Username"
-                        formControlName="firstCtrl" required [(ngModel)]="username">
+                    <input class="selvideo-username" id="selvideo-username" matInput placeholder="Username" formControlName="firstCtrl" required [(ngModel)]="username">
                 </mat-form-field>
                 <br />
                 <mat-form-field appearance="fill">
                     <mat-label>Password</mat-label>
-                    <input class="selvideo-password" id="selvideo-password" matInput placeholder="Password"
-                        formControlName="firstCtrl" required [(ngModel)]="password" type="password">
+                    <input class="selvideo-password" id="selvideo-password" matInput placeholder="Password" formControlName="firstCtrl" required [(ngModel)]="password" type="password">
                 </mat-form-field>
                 <br />
                 <ng-container>
-                    <button mat-raised-button (click)="authenticateCreds()" *ngIf="!isLoginSuccessfull; else next"
-                        [color]="!showLoginSpinner ? 'primary' : null" class="selvideo-login" id="selvideo-login">
+                    <button
+                        mat-raised-button
+                        (click)="authenticateCreds()"
+                        *ngIf="!isLoginSuccessfull; else next"
+                        [color]="!showLoginSpinner ? 'primary' : null"
+                        class="selvideo-login"
+                        id="selvideo-login"
+                    >
                         {{ !showLoginSpinner ? 'Login' : null }}
                         <div class="selvideo-mat-spinner" *ngIf="showLoginSpinner">
-                            <mat-spinner id="selvideo-spinner" class="selvideo-spinner" diameter="20"
-                                color="primary"></mat-spinner>
+                            <mat-spinner id="selvideo-spinner" class="selvideo-spinner" diameter="20" color="primary"></mat-spinner>
                         </div>
                     </button>
                     <ng-template #next>
                         <button color="primary" mat-raised-button matStepperNext>Next</button>
                         <br /><br />
-                        <mat-hint id="selvideo-success-login-msg" class="selvideo-success-login-msg">Login
-                            Successful!</mat-hint>
+                        <mat-hint id="selvideo-success-login-msg" class="selvideo-success-login-msg">Login Successful!</mat-hint>
                     </ng-template>
                 </ng-container>
             </form>
@@ -37,55 +39,50 @@
         <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>Update Data</ng-template>
-
-                <button mat-raised-button class="selvideo-add" id="selvideo-add" color="primary"
-                    (click)="addElements()">Add</button>
-                <button mat-raised-button class="selvideo-delete" id="selvideo-delete" color="warn"
-                    (click)="deleteSelected()" *ngIf="selection.selected.length">Delete</button>
+                    
+                <button mat-raised-button class="selvideo-add" id="selvideo-add" color="primary" (click)="addElements()">Add</button>
+                <button mat-raised-button class="selvideo-delete" id="selvideo-delete" color="warn" (click)="deleteSelected()" *ngIf="selection.selected.length">Delete</button>
 
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
+                
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="select">
                         <th mat-header-cell *matHeaderCellDef>
-                            <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                                [checked]="selection.hasValue() && isAllSelected()"
-                                [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                [aria-label]="checkboxLabel()">
+                            <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                             </mat-checkbox>
                         </th>
                         <td mat-cell *matCellDef="let row">
-                            <mat-checkbox (click)="$event.stopPropagation()"
-                                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-                                [aria-label]="checkboxLabel(row)" class="selvideo-checkbox">
+                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"  class="selvideo-checkbox">
                             </mat-checkbox>
                         </td>
                     </ng-container>
-
+                
                     <!-- Position Column -->
                     <ng-container matColumnDef="position">
                         <th mat-header-cell *matHeaderCellDef> No. </th>
                         <td mat-cell *matCellDef="let element" class="selvideo-position"> {{element.position}} </td>
                     </ng-container>
-
+                
                     <!-- Name Column -->
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef> Name </th>
                         <td mat-cell *matCellDef="let element" class="selvideo-name"> {{element.name}} </td>
                     </ng-container>
-
+                
                     <!-- Weight Column -->
                     <ng-container matColumnDef="weight">
                         <th mat-header-cell *matHeaderCellDef> Weight </th>
                         <td mat-cell *matCellDef="let element" class="selvideo-weight"> {{element.weight}} </td>
                     </ng-container>
-
+                
                     <!-- Symbol Column -->
                     <ng-container matColumnDef="symbol">
                         <th mat-header-cell *matHeaderCellDef> Symbol </th>
                         <td mat-cell *matCellDef="let element" class="selvideo-symbol"> {{element.symbol}} </td>
                     </ng-container>
-
+                
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
                     </tr>
@@ -97,47 +94,38 @@
                     <mat-card-content *ngFor="let selectedItem of selection.selected">
                         <mat-form-field appearance="fill">
                             <mat-label>position</mat-label>
-                            <input class="selvideo-edit-position" id="selvideo-edit-position" matInput
-                                placeholder="Position" [(ngModel)]="selectedItem.position"
-                                [ngModelOptions]="{standalone: true}">
+                            <input class="selvideo-edit-position" id="selvideo-edit-position" matInput placeholder="Position" [(ngModel)]="selectedItem.position" [ngModelOptions]="{standalone: true}">
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Name</mat-label>
-                            <input class="selvideo-edit-name" id="selvideo-edit-name" matInput placeholder="Name"
-                                [(ngModel)]="selectedItem.name" [ngModelOptions]="{standalone: true}">
+                            <input class="selvideo-edit-name" id="selvideo-edit-name" matInput placeholder="Name" [(ngModel)]="selectedItem.name" [ngModelOptions]="{standalone: true}">
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Weight</mat-label>
-                            <input class="selvideo-edit-weight" id="selvideo-edit-weight" matInput placeholder="Weight"
-                                [(ngModel)]="selectedItem.weight" [ngModelOptions]="{standalone: true}">
+                            <input class="selvideo-edit-weight" id="selvideo-edit-weight" matInput placeholder="Weight" [(ngModel)]="selectedItem.weight" [ngModelOptions]="{standalone: true}">
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Symbol</mat-label>
-                            <input class="selvideo-edit-symbol" id="selvideo-edit-symbol" matInput placeholder="Symbol"
-                                [(ngModel)]="selectedItem.symbol" [ngModelOptions]="{standalone: true}">
+                            <input class="selvideo-edit-symbol" id="selvideo-edit-symbol" matInput placeholder="Symbol" [(ngModel)]="selectedItem.symbol" [ngModelOptions]="{standalone: true}">
                         </mat-form-field>
 
                     </mat-card-content>
                 </mat-card>
-                <br />
-                <div>
-                    <button class="selvideo-back" id="selvideo-back" mat-raised-button color="warn"
-                        matStepperPrevious>Back</button>
-                    <button class="selvideo-next" id="selvideo-next" mat-raised-button color="primary"
-                        matStepperNext>Next</button>
-                </div>
+            <br />
+            <div>
+                <button class="selvideo-back" id="selvideo-back" mat-raised-button color="warn" matStepperPrevious>Back</button>
+                <button class="selvideo-next" id="selvideo-next" mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
             </form>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Update Changes to Remote DB</ng-template>
             <div class="selvideo-boundary">
-                <div class="selvideo-db" id="selvideo-db" cdkDragBoundary=".selvideo-boundary"
-                    [cdkDragFreeDragPosition]="dragPosition" cdkDrag (cdkDragEnded)="dragEnd($event)">
+                <div class="selvideo-db" id="selvideo-db" cdkDragBoundary=".selvideo-boundary" [cdkDragFreeDragPosition]="dragPosition" cdkDrag (cdkDragEnded)="dragEnd($event)">
                     Drag Right to update DB.
                 </div>
             </div>
-            <mat-progress-bar class="selvideo-progress" id="selvideo-progress" *ngIf="showProgressBar"
-                mode="indeterminate"></mat-progress-bar>
+            <mat-progress-bar class="selvideo-progress" id="selvideo-progress" *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
             <div>
                 <button mat-raised-button color="warn" (click)="reloadMiscHandler()">Done</button>
             </div>

@@ -1,0 +1,10 @@
+<button
+    mat-raised-button
+    class="goldenrod-bg white"
+    id="rzp-button2"
+    (click)="placeOrder()"
+    [disabled]="isDisabled()"
+>
+    {{ isDisabled() ? showPaymentButtonText() + ' (Token Already Exists)' : showPaymentButtonText() }}
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar && !isOrderCreated"></mat-progress-bar>
+</button>

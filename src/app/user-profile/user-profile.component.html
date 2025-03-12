@@ -1,0 +1,23 @@
+<mat-card
+    class="user-profile__card"
+>
+    <mat-card-header>
+        <img mat-card-avatar [src]="userLoginService.imageURL" />
+        <mat-card-title>{{ userLoginService.username }}</mat-card-title>
+        <mat-card-subtitle>{{ userLoginService.useremail }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions align="end">
+        <button
+            mat-raised-button
+            color="warn"
+            (click)="initiateLogout()"
+        >
+            Logout
+            <mat-icon>
+                <span class="material-icons-outlined">
+                    logout
+                </span>
+            </mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

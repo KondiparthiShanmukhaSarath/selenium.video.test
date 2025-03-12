@@ -1,0 +1,108 @@
+<div
+    class="videoplayer-theater"
+    *ngIf=!tvmode
+>
+    <button
+        mat-icon-button
+        class="videoplayer-expander"
+        (click)=toggleMode()
+    >
+        <mat-icon class="rotate-90">
+            <span class="material-icons-outlined white">
+                open_in_new
+            </span>
+        </mat-icon>
+    </button>
+    <video
+        class="videoplayer-video"
+        [width]=videoPlayerWidth
+        [height]=videoPlayerHeight
+        controls
+        autoplay
+    >
+        <source [src]="videoURL" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <mat-toolbar
+        class="videoplayer__title"
+        color="primary"
+    >
+        <button
+            mat-raised-button
+            color="warn"
+            (click)=reloadVideo()
+        >
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    refresh
+                </span>
+            </mat-icon> Refresh
+        </button>
+        <button
+            mat-raised-button
+            color="warn"
+            (click)="toggleMode()"
+        >
+            TV Mode [Click Alt/Option]
+        </button>
+    </mat-toolbar>
+    <mat-card
+        class="error-logs-card"
+    >
+        <mat-card-title>Console Error Logs</mat-card-title>
+        <mat-card-content *ngFor="let log of errorLogs; trackBy: trackByIndex">
+            <p>{{ log }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div
+    class="videoplayer-tv"
+    *ngIf=tvmode
+>
+    <button
+        mat-icon-button
+        class="videoplayer-expander"
+        (click)=toggleMode()
+    >
+        <mat-icon class="rotate-270">
+            <span class="material-icons-outlined white">
+                open_in_new
+            </span>
+        </mat-icon>
+    </button>
+    <video
+        class="videoplayer-video"
+        width=400
+        controls
+        autoplay
+    >
+        <source [src]="videoURL" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <mat-toolbar
+        class="videoplayer__title"
+        color="primary"
+    >
+        <button
+            mat-raised-button
+            color="warn"
+            (click)=reloadVideo()
+        >
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    refresh
+                </span>
+            </mat-icon> Refresh
+        </button>
+        <button
+            mat-raised-button
+            color="warn"
+            (click)=showConsoleLogs()
+        >
+            Console Logs [Click Alt/Option]
+        </button>
+    </mat-toolbar>
+</div>
+
+{{ dummyBinder }}

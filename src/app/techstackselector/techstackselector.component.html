@@ -1,0 +1,20 @@
+<mat-form-field>
+    <mat-label>Select Techstack</mat-label>
+    <mat-select
+        #techstack
+        [(ngModel)]=virtualUITestsConfigService.selectedTechStackValue
+        (ngModelChange)=onTechstackChange($event)
+        required
+    >
+        <mat-option
+            *ngFor="let tech of techstacks;trackBy: trackByMethod"
+            [value]="tech"
+            [disabled]="!!getTechStackAvailability(tech)"
+        >
+            {{ getTechStackName(tech) }} {{ getTechStackAvailability(tech) }}
+        </mat-option>
+    </mat-select>
+        <mat-hint *ngIf="techstackHintVisibility">
+            <span class="red">Select TechStack.</span>
+        </mat-hint>
+</mat-form-field>

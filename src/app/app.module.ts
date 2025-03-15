@@ -9,12 +9,9 @@ import { MaterialModule } from '../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlaygroundComponent } from './playground/playground.component';
 import { TestuipageComponent, TestuipageModal } from './testuipage/testuipage.component';
-import { CodeeditorComponent } from './codeeditor/codeeditor.component';
 import { VirtualUITestsConfigService } from './app.services/virtual-ui-tests.config.service';
 import { TestCaseCodePostManService } from './app.services/testcase-code-postman.service';
-import { CodeeditorDescriptionComponent } from './codeeditor-description/codeeditor-description.component';
 import { TopheaderComponent } from './topheader/topheader.component';
-import { TechstackselectorComponent } from './techstackselector/techstackselector.component';
 import { VideoplayerComponent } from './videoplayer/videoplayer.component';
 import { LoginButtonComponent } from './login-button/login-button.component';
 import { UserLoginService } from './app.services/userlogin.service';
@@ -48,10 +45,7 @@ import { FaqSectionComponent } from './faq-section/faq-section.component';
     PlaygroundComponent,
     TestuipageComponent,
     TestuipageModal,
-    CodeeditorComponent,
-    CodeeditorDescriptionComponent,
     TopheaderComponent,
-    TechstackselectorComponent,
     VideoplayerComponent,
     LoginButtonComponent,
     UserProfileComponent,

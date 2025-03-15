@@ -1,39 +1,16 @@
 <app-topheader></app-topheader>
-<mat-drawer-container
-    class="main-container"
->
-    <mat-drawer
-        #userprofile
-        class="user-profile"
-        mode="over"
-        position="end"
-    >
+<mat-drawer-container class="main-container">
+    <mat-drawer #userprofile class="user-profile" mode="over" position="end">
         <app-user-profile></app-user-profile>
         <app-user-mode-card></app-user-mode-card>
     </mat-drawer>
-    <mat-drawer-content
-        class="main-container-drawer-content"
-    >
-        <mat-drawer-container
-            class="playground__container"
-            (window:resize)="onResize()"
-        >
-            <mat-drawer
-                class="playground__testcases"
-                mode="side"
-                opened
-            >
-                <app-testcases></app-testcases>
+    <mat-drawer-content class="main-container-drawer-content">
+        <mat-drawer-container class="playground__container" (window:resize)="onResize()">
+            <mat-drawer class="playground__testcases" mode="side" opened>
             </mat-drawer>
-            <mat-drawer-content
-                #testuipageContainer
-                class="playground__testuipage"
-            >
+            <mat-drawer-content #testuipageContainer class="playground__testuipage">
                 <app-testuipage></app-testuipage>
-                <app-videoplayer
-                    [parentWidth]=testuipageWidth
-                    [parentHeight]=testuipageHeight
-                ></app-videoplayer>
+                <app-videoplayer [parentWidth]=testuipageWidth [parentHeight]=testuipageHeight></app-videoplayer>
             </mat-drawer-content>
         </mat-drawer-container>
     </mat-drawer-content>

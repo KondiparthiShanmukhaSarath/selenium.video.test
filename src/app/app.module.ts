@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from '../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlaygroundComponent } from './playground/playground.component';
-import { TestcasesComponent } from './testcases/testcases.component';
 import { TestuipageComponent, TestuipageModal } from './testuipage/testuipage.component';
 import { CodeeditorComponent } from './codeeditor/codeeditor.component';
 import { VirtualUITestsConfigService } from './app.services/virtual-ui-tests.config.service';
@@ -30,9 +29,7 @@ import { UserProfileSideNavService } from './app.services/userprofile-sidenav.se
 import { SetVideoPlayerService } from './app.services/set-video-player.service';
 import { UserStateManagerService } from './app.services/user-state-manager.service';
 import { NotificationService } from './app.services/notification.service';
-import { AllTokensTableComponent } from './all-tokens-table/all-tokens-table.component';
 import { TokenManagerService } from './app.services/token-manager.service';
-import { PaymentGatewayIntegrationComponent } from './payment-gateway-integration/payment-gateway-integration.component';
 import { PaymentService } from './app.services/payment.service';
 import { AppRoutingModule } from './app-routing.module';
 import { DynamicDialogComponentComponent } from './dynamic-dialog-component/dynamic-dialog-component.component';
@@ -44,14 +41,11 @@ import { PrivacyPolicyComponentComponent } from './privacy-policy-component/priv
 import { PricingComponentComponent } from './pricing-component/pricing-component.component';
 import { TestuipageMiscComponent } from './testuipage-misc/testuipage-misc.component';
 import { FaqSectionComponent } from './faq-section/faq-section.component';
-import { CpuUsageComponent } from './cpu-usage/cpu-usage.component';
-import { DomainsTableComponent } from './domains-table/domains-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlaygroundComponent,
-    TestcasesComponent,
     TestuipageComponent,
     TestuipageModal,
     CodeeditorComponent,
@@ -62,8 +56,6 @@ import { DomainsTableComponent } from './domains-table/domains-table.component';
     LoginButtonComponent,
     UserProfileComponent,
     UserModeCardComponent,
-    AllTokensTableComponent,
-    PaymentGatewayIntegrationComponent,
     DynamicDialogComponentComponent,
     AboutUsComponentComponent,
     TermsAndConditionsComponentComponent,
@@ -71,8 +63,6 @@ import { DomainsTableComponent } from './domains-table/domains-table.component';
     PricingComponentComponent,
     TestuipageMiscComponent,
     FaqSectionComponent,
-    CpuUsageComponent,
-    DomainsTableComponent,
   ],
   imports: [
     RouterModule.forRoot([]),

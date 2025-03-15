@@ -6,8 +6,6 @@ import {
   VirtualUITestsConfigService,
 } from '../app.services/virtual-ui-tests.config.service';
 
-import { TestcasesComponent } from '../testcases/testcases.component';
-
 @Component({
   selector: 'app-techstackselector',
   templateUrl: './techstackselector.component.html',
@@ -23,8 +21,8 @@ export class TechstackselectorComponent implements OnInit {
   }
 
   constructor(
-      virtualUITestsConfigService: VirtualUITestsConfigService,
-    ) {
+    virtualUITestsConfigService: VirtualUITestsConfigService,
+  ) {
     this.virtualUITestsConfigService = virtualUITestsConfigService;
   }
 

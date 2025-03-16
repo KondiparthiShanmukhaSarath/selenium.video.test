@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from '../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PlaygroundComponent } from './playground/playground.component';
 import { TestuipageComponent, TestuipageModal } from './testuipage/testuipage.component';
 import { VirtualUITestsConfigService } from './app.services/virtual-ui-tests.config.service';
 import { TestCaseCodePostManService } from './app.services/testcase-code-postman.service';
@@ -37,12 +36,10 @@ import { TermsAndConditionsComponentComponent } from './terms-and-conditions-com
 import { PrivacyPolicyComponentComponent } from './privacy-policy-component/privacy-policy-component.component';
 import { PricingComponentComponent } from './pricing-component/pricing-component.component';
 import { TestuipageMiscComponent } from './testuipage-misc/testuipage-misc.component';
-import { FaqSectionComponent } from './faq-section/faq-section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlaygroundComponent,
     TestuipageComponent,
     TestuipageModal,
     TopheaderComponent,
@@ -56,7 +53,6 @@ import { FaqSectionComponent } from './faq-section/faq-section.component';
     PrivacyPolicyComponentComponent,
     PricingComponentComponent,
     TestuipageMiscComponent,
-    FaqSectionComponent,
   ],
   imports: [
     RouterModule.forRoot([]),
